@@ -601,15 +601,18 @@ static int msm_geni_serial_ioctl(struct uart_port *uport, unsigned int cmd,
 		return ret;
 
 	switch (cmd) {
-	case TIOCPMGET: {
+	case TIOCPMGET:
+	case TIOCPMGET_ALT: {
 		ret = vote_clock_on(uport);
 		break;
 	}
-	case TIOCPMPUT: {
+	case TIOCPMPUT:
+	case TIOCPMPUT_ALT: {
 		ret = vote_clock_off(uport);
 		break;
 	}
-	case TIOCPMACT: {
+	case TIOCPMACT:
+	case TIOCPMACT_ALT: {
 		ret = !pm_runtime_status_suspended(uport->dev);
 		break;
 	}
